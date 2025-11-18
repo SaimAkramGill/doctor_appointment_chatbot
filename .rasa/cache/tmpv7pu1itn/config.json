@@ -1,0 +1,32 @@
+{
+  "priority": 5,
+  "nlu_abstention_threshold": 0.9,
+  "prompt_template": null,
+  "llm": {
+    "id": "openai-gpt-4o",
+    "models": [
+      {
+        "model": "gpt-4o-2024-11-20",
+        "api_base": null,
+        "api_version": null,
+        "api_type": "openai",
+        "provider": "openai",
+        "temperature": 0.0,
+        "max_completion_tokens": 256,
+        "timeout": 7
+      }
+    ]
+  },
+  "embeddings": {
+    "id": "openai-embeddings",
+    "models": [
+      {
+        "model": "text-embedding-3-large",
+        "api_base": null,
+        "api_version": null,
+        "api_type": "openai",
+        "provider": "openai"
+      }
+    ]
+  }
+}

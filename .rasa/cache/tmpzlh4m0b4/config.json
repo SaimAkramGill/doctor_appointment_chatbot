@@ -1,0 +1,24 @@
+{
+  "prompt_template": null,
+  "user_input": null,
+  "llm": {
+    "id": "openai-gpt-4o",
+    "models": [
+      {
+        "provider": "openai",
+        "model": "gpt-4o-2024-11-20",
+        "request_timeout": 7,
+        "max_tokens": 256
+      }
+    ]
+  },
+  "flow_retrieval": {
+    "embeddings": {
+      "provider": "openai",
+      "model": "text-embedding-3-large"
+    },
+    "num_flows": 20,
+    "turns_to_embed": 1,
+    "should_embed_slots": true
+  }
+}
