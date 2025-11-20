@@ -1,0 +1,64 @@
+version: "3.1"
+
+actions:
+  - action_book_meeting
+
+slots:
+  meeting_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  meeting_date:
+    type: text
+    mappings:
+      - type: from_llm
+
+  meeting_time:
+    type: text
+    mappings:
+      - type: from_llm
+
+  meeting_reason:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+
+  utter_ask_meeting_date:
+    - text: "Sure! What date would you like to book the meeting for?"
+      buttons:
+       - title: "November 19, 2025"
+         payload: "/SetSlots(meeting_date=19-11-2025)"
+       - title: "November 20, 2025"
+         payload: "/SetSlots(meeting_date=20-11-2025)"  
+
+  utter_ask_meeting_time:
+    - text: "What time should I schedule the meeting?"
+      buttons:
+       - title: "10:00 AM"
+         payload: "/SetSlots(meeting_time=10:00AM)"
+       - title: "11:00 AM"
+         payload: "/SetSlots(meeting_time=11:00AM)"
+
+  utter_ask_meeting_reason:
+    - text: "What is the purpose of the meeting?"
+
+  utter_ask_meeting_confirmation:
+    - text: "You want to book a meeting on {meeting_date} at {meeting_time} for '{meeting_reason}'. Should I confirm it?"
+      buttons:
+        - title: "Yes, confirm"
+          payload: "/SetSlots(meeting_confirmation=true)"
+        - title: "No, cancel"
+          payload: "/SetSlots(meeting_confirmation=false)"
+
+  utter_meeting_cancelled:
+    - text: "Okay, I’ve canceled the meeting booking."
+
+  utter_meeting_success:
+    - text: "Great! Your meeting has been booked successfully."
+
+  utter_meeting_error:
+    - text: "Something went wrong while booking the meeting. Please try again."
+

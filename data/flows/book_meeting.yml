@@ -1,0 +1,39 @@
+flows:
+  book_meeting:
+    description: book a meeting for the user
+    name: book a meeting
+    steps:
+      - collect: "meeting_date"
+        description: "the date of the meeting (e.g. 25 Nov or 2025-11-26)"
+
+      - collect: "meeting_time"
+        description: "the time of the meeting (e.g. 3 PM or 15:00)"
+
+      - collect: "meeting_reason"
+        description: "the purpose or subject of the meeting"
+
+      - collect: "meeting_confirmation"
+        ask_before_filling: true
+        next:
+          - if: "slots.meeting_confirmation is not true"
+            then:
+              - action: utter_meeting_cancelled
+                next: END
+          - else: book_meeting_action
+
+      - id: book_meeting_action
+        action: action_book_meeting
+        next:
+          - if: "slots.return_value = 'success'"
+            then:
+              - action: utter_meeting_success
+                next: END
+
+          - if: "slots.return_value = 'error'"
+            then:
+              - action: utter_meeting_error
+                next: END
+
+          - else:
+              - action: utter_meeting_error
+                next: END
